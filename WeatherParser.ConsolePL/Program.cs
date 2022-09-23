@@ -1,33 +1,32 @@
-﻿using Autofac;
+﻿using System;
+using Autofac;
 using Google.Protobuf.WellKnownTypes;
-using System;
 using WeatherParser.GrpcService.Services;
 
-namespace WeatherParser.ConsolePL
+namespace WeatherParser.ConsolePL;
+
+internal class Program
 {
-    class Program
+    private static void Main(string[] args)
     {
-        static void Main(string[] args)
+        var builder = new ContainerBuilder();
+        builder.RegisterModule<WeatherParserConsoleModule>();
+
+        var container = builder.Build();
+
+        var weatherParserService = container.Resolve<WeatherDataProtoGismeteo.WeatherDataProtoGismeteoClient>();
+
+        try
         {
-            var builder = new ContainerBuilder();
-            builder.RegisterModule<WeatherParserConsoleModule>();
-
-            var container = builder.Build();
-
-            WeatherDataProtoGismeteo.WeatherDataProtoGismeteoClient weatherParserService = container.Resolve<WeatherDataProtoGismeteo.WeatherDataProtoGismeteoClient>();
-
-            try
-            {
-                weatherParserService.SaveWeatherData(new Empty());
-            }
-            catch
-            {
-                Console.WriteLine("Error");
-            }
-
-            //var result = weatherParserService.GetAllWeatherData(DateTime.UtcNow.ToTimestamp());
-
-            Console.ReadLine();
+            weatherParserService.SaveWeatherData(new Empty());
         }
+        catch
+        {
+            Console.WriteLine("Error");
+        }
+
+        //var result = weatherParserService.GetAllWeatherData(DateTime.UtcNow.ToTimestamp());
+
+        Console.ReadLine();
     }
 }

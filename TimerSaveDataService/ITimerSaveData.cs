@@ -1,7 +1,6 @@
-﻿namespace WeatherParser.TimerSaveDataService
+﻿namespace WeatherParser.TimerSaveDataService;
+
+public interface ITimerSaveData
 {
-    public interface ITimerSaveData
-    {
-        void SaveData();
-    }
+    void SaveData();
 }

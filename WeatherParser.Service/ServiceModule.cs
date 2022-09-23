@@ -3,18 +3,17 @@ using WeatherParser.Repository;
 using WeatherParser.Service.Contract;
 using WeatherParser.Service.Plugins.GismeteoService;
 
-namespace WeatherParser.Service
+namespace WeatherParser.Service;
+
+public class ServiceModule : Module
 {
-    public class ServiceModule : Module
+    protected override void Load(ContainerBuilder builder)
     {
-        protected override void Load(ContainerBuilder builder)
-        {
-            builder.RegisterType<Service>().As<IService>();
+        builder.RegisterType<Service>().As<IService>();
 
-            //register all plugins modules
-            builder.RegisterModule<GismeteoServiceModule>();
+        //register all plugins modules
+        builder.RegisterModule<GismeteoServiceModule>();
 
-            builder.RegisterModule<RepositoryModule>();
-        }
+        builder.RegisterModule<RepositoryModule>();
     }
 }

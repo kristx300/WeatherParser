@@ -4,17 +4,16 @@ using Grpc.Net.Client;
 using WeatherParser.GrpcService.Services;
 using WeatherParser.TimerSaveDataService;
 
-namespace WeatherParser.ConsolePL
+namespace WeatherParser.ConsolePL;
+
+public class WeatherParserConsoleModule : Module
 {
-    public class WeatherParserConsoleModule : Module
+    protected override void Load(ContainerBuilder builder)
     {
-        protected override void Load(ContainerBuilder builder)
-        {
-            builder.Register(c => GrpcChannel.ForAddress("http://localhost:5000")).As<ChannelBase>().SingleInstance();
+        builder.Register(c => GrpcChannel.ForAddress("http://localhost:5000")).As<ChannelBase>().SingleInstance();
 
-            builder.RegisterType<WeatherDataProtoGismeteo.WeatherDataProtoGismeteoClient>();
+        builder.RegisterType<WeatherDataProtoGismeteo.WeatherDataProtoGismeteoClient>();
 
-            builder.RegisterType<ITimerSaveData>().As<TimerSaveData>().SingleInstance();
-        }
+        builder.RegisterType<ITimerSaveData>().As<TimerSaveData>().SingleInstance();
     }
 }

@@ -1,13 +1,12 @@
 ﻿using Autofac;
 using WeatherParser.TimerSaveDataService;
 
-namespace TimerSaveDataService
+namespace TimerSaveDataService;
+
+public class TimerSaveDataModule : Module
 {
-    public class TimerSaveDataModule : Module
+    protected override void Load(ContainerBuilder builder)
     {
-        protected override void Load(ContainerBuilder builder)
-        {
-            builder.RegisterType<TimerSaveData>().As<ITimerSaveData>();
-        }
+        builder.RegisterType<TimerSaveData>().As<ITimerSaveData>();
     }
 }

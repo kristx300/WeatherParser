@@ -1,9 +1,8 @@
 ﻿using WeatherParser.Service.Entities;
 
-namespace WeatherParser.Service.GismeteoService.Contract
+namespace WeatherParser.Service.GismeteoService.Contract;
+
+public interface IWeatherParserServiceGismeteo
 {
-    public interface IWeatherParserServiceGismeteo
-    {
-        List<WeatherDataService> SaveWeatherData();
-    }
+    List<WeatherDataService> SaveWeatherData();
 }

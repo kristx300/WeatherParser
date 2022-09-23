@@ -3,17 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF" xmlns:viewmodels="clr-namespace:WeatherParser.WPF.ViewModels"
-             mc:Ignorable="d"
-        >
-    
+        xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+        mc:Ignorable="d">
+
     <Grid Height="337">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0" Margin="3,0,3,0" Background="#FFEEEEEE" >
+        <Grid Grid.Column="0" Margin="3,0,3,0" Background="#FFEEEEEE">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -24,73 +23,79 @@
             <Grid Grid.Row="0" Margin="5">
                 <ComboBox SelectedItem="{Binding SelectedSite}" ItemsSource="{Binding Sites}" />
             </Grid>
-            
+
             <Grid Grid.Row="1">
-                <DatePicker SelectedDate="{Binding SelectedDate}" DisplayDateStart="{Binding FirstDate}" DisplayDateEnd="{Binding LastDate}"/>
+                <DatePicker SelectedDate="{Binding SelectedDate}" DisplayDateStart="{Binding FirstDate}"
+                            DisplayDateEnd="{Binding LastDate}" />
             </Grid>
-            
+
             <Grid Grid.Row="2">
-                
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0" Margin="2" VerticalAlignment="Center">
-                    <Label Content="Select data: " HorizontalAlignment="Center" FontSize="15" FontFamily="Georgia"/>
+                    <Label Content="Select data: " HorizontalAlignment="Center" FontSize="15" FontFamily="Georgia" />
 
-                    <Button Command="{Binding TemperatureCommand}" Margin="2" FontSize="15" FontFamily="Georgia" IsEnabled="{Binding IsTimeSelected}">
+                    <Button Command="{Binding TemperatureCommand}" Margin="2" FontSize="15" FontFamily="Georgia"
+                            IsEnabled="{Binding IsTimeSelected}">
                         Temperature
                     </Button>
-                    <Button Command="{Binding WindSpeedCommand}" Margin="2" FontSize="15" FontFamily="Georgia" IsEnabled="{Binding IsTimeSelected}">
+                    <Button Command="{Binding WindSpeedCommand}" Margin="2" FontSize="15" FontFamily="Georgia"
+                            IsEnabled="{Binding IsTimeSelected}">
                         Wind Speed
                     </Button>
                     <!--<Button Command="{Binding WindDirectionCommand}" Margin="2" FontSize="15" FontFamily="Georgia" IsEnabled="{Binding IsTimeSelected}">
                         Wind Direction
                     </Button>-->
-                    <Button Command="{Binding PressureCommand}" Margin="2" FontSize="15" FontFamily="Georgia" IsEnabled="{Binding IsTimeSelected}">
+                    <Button Command="{Binding PressureCommand}" Margin="2" FontSize="15" FontFamily="Georgia"
+                            IsEnabled="{Binding IsTimeSelected}">
                         Pressure
                     </Button>
-                    <Button Command="{Binding HumidityCommand}" Margin="2" FontSize="15" FontFamily="Georgia" IsEnabled="{Binding IsTimeSelected}">
+                    <Button Command="{Binding HumidityCommand}" Margin="2" FontSize="15" FontFamily="Georgia"
+                            IsEnabled="{Binding IsTimeSelected}">
                         Humidity
                     </Button>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Margin="2" VerticalAlignment="Center">
-                    <Label Content="Select time: " HorizontalAlignment="Center" FontSize="15" FontFamily="Georgia"/>
+                    <Label Content="Select time: " HorizontalAlignment="Center" FontSize="15" FontFamily="Georgia" />
 
                     <ItemsControl ItemsSource="{Binding Times}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <CheckBox
-                                    Margin="2" 
-                                    FontFamily="Georgia" 
+                                    Margin="2"
+                                    FontFamily="Georgia"
                                     Content="{Binding CurrentTime}"
                                     IsChecked="{Binding IsChecked}"
                                     IsEnabled="{Binding IsDateChecked}"
-                                    ContentStringFormat="{}{0}.00"
-                                    />
+                                    ContentStringFormat="{}{0}.00" />
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                    
+
                 </StackPanel>
-                
+
             </Grid>
 
             <Grid Grid.Row="3">
                 <StackPanel>
-                    <Button Command="{Binding RefreshDataCommand}" Content="Refresh data" Margin="10" FontSize="15" FontFamily="Georgia"/>
-                    <Button Command="{Binding RestartAppCommand}" Content="Restart application" Margin="10" FontSize="15" FontFamily="Georgia"/>
+                    <Button Command="{Binding RefreshDataCommand}" Content="Refresh data" Margin="10" FontSize="15"
+                            FontFamily="Georgia" />
+                    <Button Command="{Binding RestartAppCommand}" Content="Restart application" Margin="10"
+                            FontSize="15" FontFamily="Georgia" />
                 </StackPanel>
             </Grid>
-            
+
         </Grid>
 
-        
+
         <Border Grid.Column="1" Background="AliceBlue" SnapsToDevicePixels="True" Margin="50">
-            <lvc:CartesianChart Series="{Binding Series}" XAxes="{Binding XAxes}" YAxes="{Binding YAxes}" x:Name="ASS"/>
+            <lvc:CartesianChart Series="{Binding Series}" XAxes="{Binding XAxes}" YAxes="{Binding YAxes}" x:Name="ASS" />
         </Border>
-        
+
     </Grid>
 </Window>

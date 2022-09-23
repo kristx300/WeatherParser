@@ -1,29 +1,28 @@
-﻿namespace WeatherParser.WPF.ViewModels
+﻿namespace WeatherParser.WPF.ViewModels;
+
+internal class TimeViewModel : NotifyPropertyChangedBase
 {
-    internal class TimeViewModel: NotifyPropertyChangedBase
+    private int _currentTime;
+
+    private bool _isChecked;
+
+    private bool _isDateChecked;
+
+    public int CurrentTime
     {
-        private int _currentTime;
+        get => _currentTime;
+        set => OnPropertyChanged(value, ref _currentTime);
+    }
 
-        private bool _isDateChecked;
+    public bool IsDateChecked
+    {
+        get => _isDateChecked;
+        set => OnPropertyChanged(value, ref _isDateChecked);
+    }
 
-        private bool _isChecked;
-
-        public int CurrentTime
-        {
-            get => _currentTime;
-            set => OnPropertyChanged(value, ref _currentTime);
-        }
-
-        public bool IsDateChecked
-        {
-            get => _isDateChecked;
-            set => OnPropertyChanged(value, ref _isDateChecked);
-        }
-
-        public bool IsChecked
-        {
-            get => _isChecked;
-            set => OnPropertyChanged(value, ref _isChecked);
-        }
+    public bool IsChecked
+    {
+        get => _isChecked;
+        set => OnPropertyChanged(value, ref _isChecked);
     }
 }

@@ -1,41 +1,40 @@
 ﻿using Autofac;
-using WeatherParser.WPF.ViewModels;
-using TimerSaveDataService;
-using Grpc.Net.Client;
 using Grpc.Core;
-using WeatherParser.GrpcService.Services;
+using Grpc.Net.Client;
 using Serilog;
+using TimerSaveDataService;
+using WeatherParser.GrpcService.Services;
 using WeatherParser.WPF.Commands;
 using WeatherParser.WPF.Decorators;
+using WeatherParser.WPF.ViewModels;
 
-namespace WeatherParser.WPF
+namespace WeatherParser.WPF;
+
+public class WPFModule : Module
 {
-    public class WPFModule : Module
+    protected override void Load(ContainerBuilder builder)
     {
-        protected override void Load(ContainerBuilder builder)
+        builder.Register(c => GrpcChannel.ForAddress("http://localhost:5004")).As<ChannelBase>().SingleInstance();
+
+        builder.RegisterType<WeatherDataProtoGismeteo.WeatherDataProtoGismeteoClient>();
+
+        builder.RegisterType<MainWindowViewModel>().AsSelf().SingleInstance();
+
+        builder.Register<ILogger>(log =>
         {
-            builder.Register(c => GrpcChannel.ForAddress("http://localhost:5004")).As<ChannelBase>().SingleInstance();
+            return new LoggerConfiguration()
+                .WriteTo.File("log.txt")
+                .CreateLogger();
+        }).SingleInstance();
 
-            builder.RegisterType<WeatherDataProtoGismeteo.WeatherDataProtoGismeteoClient>();
+        builder.RegisterModule<TimerSaveDataModule>();
 
-            builder.RegisterType<MainWindowViewModel>().AsSelf().SingleInstance();
+        builder.RegisterType<GetHumidityCommand>().As<ICommand>().Named<ICommand>("HumidityCommand");
+        builder.RegisterType<GetPressureCommand>().As<ICommand>().Named<ICommand>("PressureCommand");
+        builder.RegisterType<GetTemperatureCommand>().As<ICommand>().Named<ICommand>("TemperatureCommand");
+        builder.RegisterType<GetWindDirectionCommand>().As<ICommand>().Named<ICommand>("WindDirectionCommand");
+        builder.RegisterType<GetWindSpeedCommand>().As<ICommand>().Named<ICommand>("WindSpeedCommand");
 
-            builder.Register<ILogger>(log =>
-            {
-                return new LoggerConfiguration()
-                    .WriteTo.File("log.txt")
-                    .CreateLogger();
-            }).SingleInstance();
-
-            builder.RegisterModule<TimerSaveDataModule>();
-
-            builder.RegisterType<GetHumidityCommand>().As<ICommand>().Named<ICommand>("HumidityCommand");
-            builder.RegisterType<GetPressureCommand>().As<ICommand>().Named<ICommand>("PressureCommand");
-            builder.RegisterType<GetTemperatureCommand>().As<ICommand>().Named<ICommand>("TemperatureCommand");
-            builder.RegisterType<GetWindDirectionCommand>().As<ICommand>().Named<ICommand>("WindDirectionCommand");
-            builder.RegisterType<GetWindSpeedCommand>().As<ICommand>().Named<ICommand>("WindSpeedCommand");
-
-            builder.RegisterDecorator<LoggingDecorator, ICommand>();
-        }
+        builder.RegisterDecorator<LoggingDecorator, ICommand>();
     }
 }

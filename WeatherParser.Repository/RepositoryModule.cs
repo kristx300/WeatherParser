@@ -1,13 +1,12 @@
 ﻿using Autofac;
 using WeatherParser.Repository.Contract;
 
-namespace WeatherParser.Repository
+namespace WeatherParser.Repository;
+
+public class RepositoryModule : Module
 {
-    public class RepositoryModule : Module
+    protected override void Load(ContainerBuilder builder)
     {
-        protected override void Load(ContainerBuilder builder)
-        {
-            builder.RegisterType<WeatherDataFileRepository>().As<IWeatherParserRepository>();
-        }
+        builder.RegisterType<WeatherDataFileRepository>().As<IWeatherParserRepository>();
     }
 }
