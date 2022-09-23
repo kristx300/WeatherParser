@@ -3,7 +3,7 @@ using Autofac;
 using Google.Protobuf.WellKnownTypes;
 using WeatherParser.GrpcService.Services;
 
-namespace WeatherParser.ConsolePL;
+namespace WeatherParser;
 
 internal class Program
 {

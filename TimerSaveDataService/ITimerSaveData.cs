@@ -1,4 +1,4 @@
-﻿namespace WeatherParser.TimerSaveDataService;
+﻿namespace TimerSaveDataService;
 
 public interface ITimerSaveData
 {

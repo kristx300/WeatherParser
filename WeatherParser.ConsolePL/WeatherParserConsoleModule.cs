@@ -1,10 +1,10 @@
 ﻿using Autofac;
 using Grpc.Core;
 using Grpc.Net.Client;
+using TimerSaveDataService;
 using WeatherParser.GrpcService.Services;
-using WeatherParser.TimerSaveDataService;
 
-namespace WeatherParser.ConsolePL;
+namespace WeatherParser;
 
 public class WeatherParserConsoleModule : Module
 {

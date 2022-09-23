@@ -1,11 +1,11 @@
 ﻿using System.Reflection;
 using AngleSharp;
 using Helpers;
-using Helpers.Urls;
 using WeatherParser.Service.Entities;
+using WeatherParser.Service.Entities.Urls;
 using WeatherParser.Service.GismeteoService.Contract;
 
-namespace WeatherParser.Service.Plugins.GismeteoService;
+namespace WeatherParser.Service.GismeteoService;
 
 public class WeatherDataAngleSharpServiceGismeteo : IWeatherParserServiceGismeteo
 {

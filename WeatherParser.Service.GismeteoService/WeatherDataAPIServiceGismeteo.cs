@@ -1,7 +1,7 @@
 ﻿using WeatherParser.Service.Entities;
 using WeatherParser.Service.GismeteoService.Contract;
 
-namespace WeatherParser.Service.Plugins.GismeteoService;
+namespace WeatherParser.Service.GismeteoService;
 
 public class WeatherDataAPIServiceGismeteo : IWeatherParserServiceGismeteo
 {

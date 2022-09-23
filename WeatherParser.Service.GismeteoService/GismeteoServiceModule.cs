@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using WeatherParser.Service.GismeteoService.Contract;
 
-namespace WeatherParser.Service.Plugins.GismeteoService;
+namespace WeatherParser.Service.GismeteoService;
 
 public class GismeteoServiceModule : Module
 {

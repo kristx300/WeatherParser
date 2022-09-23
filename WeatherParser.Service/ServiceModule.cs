@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using WeatherParser.Repository;
 using WeatherParser.Service.Contract;
-using WeatherParser.Service.Plugins.GismeteoService;
+using WeatherParser.Service.GismeteoService;
 
 namespace WeatherParser.Service;
 

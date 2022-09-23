@@ -4,7 +4,7 @@ using Google.Protobuf.WellKnownTypes;
 using Serilog;
 using WeatherParser.GrpcService.Services;
 
-namespace WeatherParser.TimerSaveDataService;
+namespace TimerSaveDataService;
 
 public class TimerSaveData : ITimerSaveData
 {

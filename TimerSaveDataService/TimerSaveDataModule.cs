@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using WeatherParser.TimerSaveDataService;
 
 namespace TimerSaveDataService;
 

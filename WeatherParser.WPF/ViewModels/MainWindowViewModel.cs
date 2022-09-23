@@ -9,9 +9,9 @@ using Autofac;
 using Google.Protobuf.WellKnownTypes;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
+using TimerSaveDataService;
 using WeatherParser.GrpcService.Services;
 using WeatherParser.Presentation.Entities;
-using WeatherParser.TimerSaveDataService;
 using IContainer = Autofac.IContainer;
 
 namespace WeatherParser.WPF.ViewModels;

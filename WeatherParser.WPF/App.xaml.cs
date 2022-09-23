@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Weather;
+namespace WeatherParser.WPF;
 
 /// <summary>
 ///     Interaction logic for App.xaml
